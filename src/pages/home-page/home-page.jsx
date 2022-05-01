@@ -1,9 +1,10 @@
 import {Sidebar} from "../../componentes";
 import VideoList from "../video-listing/video-listing";
-// import { Link } from "react-router-dom";
+import { Navbar } from "../../componentes";
 export default function HomePage(){
     return (
         <div>
+            <Navbar/>
             <div className="flex-row">
                 <div>
                 <Sidebar/>
