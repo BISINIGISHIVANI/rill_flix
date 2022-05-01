@@ -1,28 +1,36 @@
 .bd-rht {
-    border-right: 2px solid #cef750;
-  }
-  .sidebar-content {
-    width: fit-content;
-  }
-  .mg-left-sm {
-    margin-right: 1rem;
-  }
-  .padding-top {
-    padding: 1rem 0;
-  }
-.icon-set img{
-  width:2rem;
+  border-right: 2px solid #cef750;
+}
+
+.sidebar-content {
+  width: fit-content;
+}
+
+.mg-left-sm {
+  margin-right: 1rem;
+}
+
+.padding-top {
+  padding: 1rem 0;
+}
+
+.icon-set img {
+  width: 2rem;
   height: 2rem;
 }
-.icn-content li{
+
+.icn-content li {
   margin-bottom: 1.2rem;
 }
-.margin-top{
+
+.margin-top {
   margin-top: 0.4rem;
 }
-.icn-content li:hover{
+
+.icn-content li:hover {
   color: var(--primaryColor);
 }
-.arrow-down{
+
+.arrow-down {
   transform: skewY(1.5);
 }

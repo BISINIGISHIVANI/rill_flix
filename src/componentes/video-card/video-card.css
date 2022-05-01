@@ -1,22 +1,27 @@
-.videocard-img img{
-    width:15rem;
+.videocard-img img {
+    width: 15rem;
 }
-.video-profile{
+
+.video-profile {
     width: 1.5rem;
     height: 1.5rem;
 }
-.video-card-set{
-    width:12rem;
+
+.video-card-set {
+    width: 12rem;
 }
-.position-relative{
+
+.position-relative {
     position: relative;
 }
-.position-absolute{
+
+.position-absolute {
     position: absolute;
 }
-.video-timer{
+
+.video-timer {
     border: 1px solid black;
-    top:90%;
-    left:0;
+    top: 90%;
+    left: 0;
     color: #fff;
 }
