@@ -1,0 +1,22 @@
+.videocard-img img{
+    width:15rem;
+}
+.video-profile{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.video-card-set{
+    width:12rem;
+}
+.position-relative{
+    position: relative;
+}
+.position-absolute{
+    position: absolute;
+}
+.video-timer{
+    border: 1px solid black;
+    top:90%;
+    left:0;
+    color: #fff;
+}
