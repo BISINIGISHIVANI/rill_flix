@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Hubballi&family=Roboto+Mono:ital,wght@1,100&family=Roboto:wght@300&family=Source+Sans+Pro&family=Water+Brush&display=swap");
 .App {
-  /* background-color:rgb(137, 220, 165); */
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 :root{
@@ -16,6 +15,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+  color: var(--mainBlack);
 }
 .user-profile {
   width: fit-content;
