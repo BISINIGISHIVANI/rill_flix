@@ -1,16 +1,9 @@
 import "./App.css";
-import { Navbar,Sidebar,Footer,VideoCard } from "./componentes";
-import { HomePage, LandingPage,VideoList } from "./pages";
-import {Routes,Route} from "react-router-dom";
+import PublicRoute from "./routes/public-route";
 function App() {
   return (
     <div className="App">
-     <Navbar/>
-     <Routes>
-       <Route path="/" element={<LandingPage/>}/>
-       <Route path="/home" element={<HomePage/>}/>
-    </Routes>
-     <Footer/>
+     <PublicRoute/>
     </div>
   );
 }
