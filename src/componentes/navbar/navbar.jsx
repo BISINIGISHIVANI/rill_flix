@@ -51,7 +51,7 @@ export default function Navbar(){
           <div className="msg-box">
             <div className="triangle-box"></div>
             <div className="square-box">
-              <div className="flex-col gap hover-white">
+              <div className="flex-col gap hover-white padding-md">
                 <Link to="/signin">
                 <span className="cursor-pointer"
                  onClick={()=>userHandler(checkUserStatus(authName))}

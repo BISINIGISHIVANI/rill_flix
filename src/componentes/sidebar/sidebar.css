@@ -1,5 +1,5 @@
 .bd-rht {
-  border-right: 2px solid #cef750;
+  border-right: 2px solid var(--primaryColor);
 }
 
 .sidebar-content {
@@ -20,7 +20,7 @@
 }
 
 .icn-content li {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .margin-top {
