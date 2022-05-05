@@ -36,3 +36,8 @@
 .arrow-down {
   transform: skewY(1.5);
 }
+@media screen and (max-width:450px) {
+  .icn-content li{
+    display: none;
+  }
+}

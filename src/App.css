@@ -182,9 +182,12 @@ a {
   border-bottom: 2px double var(--primaryColor);
 }
 
-.bd-left {
+/* .bd-left {
   border-left: 2px solid var(--primaryColor);
   padding: 0 12px;
+} */
+.flex-wrap{
+  flex-wrap: wrap;
 }
 
 .footer-btm {

@@ -10,7 +10,7 @@ export default function VideoList(){
     const searchData=GetSearchData(videos,searchQuery);
     return (
         <div className="video-list-set bd-lft">
-            <div className="chips-bar flex-row gap padding-md bd-bottom">
+            <div className="chips-bar flex-row flex-wrap gap padding-md">
                 <div className="chips chip-active" >
                     <p>All</p>
                 </div>

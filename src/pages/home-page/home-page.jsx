@@ -9,7 +9,7 @@ export default function HomePage(){
                 <div>
                 <Sidebar/>
                 </div>
-                <div className="margin-left">
+                <div>
                 <VideoList/> 
                 </div>
             </div>

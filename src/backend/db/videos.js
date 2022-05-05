@@ -51,7 +51,7 @@ export const videos = [
     thumbNail:annebell,
     title: "ANNABELLE horror ",
     videoSpan:"04:56",
-    subtitle:"ANNABELLE COMES HOME",
+    subtitle:"ANNABELLE trailer",
     views:"23M",
     publishedYear:"3 years ago",
     categoryName:"Movies",
