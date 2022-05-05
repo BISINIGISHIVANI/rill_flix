@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&family=Hubballi&family=Roboto+Mono:ital,wght@1,100&family=Roboto:wght@300&family=Source+Sans+Pro&family=Water+Brush&display=swap");
 
 .App {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: cursive, sans-serif;
 }
 
 :root {
@@ -49,8 +49,14 @@ a {
   background-color: var(--primaryColor);
   text-transform: uppercase;
   border: none;
+  color:var(--mainWhite);
   padding: 0.5rem 0.7rem;
   border-radius: 0.3rem;
+}
+.primary-btn:hover{
+  background-color: var(--mainWhite);
+  border:2px solid var(--primaryColor);
+  color:var(--primaryColor)
 }
 
 .cursor-pointer,

@@ -1,8 +1,13 @@
 .chips-bar div {
     border: 2px groove var(--primaryColor);
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem 0.8rem;
     border-radius: 4rem;
     cursor: pointer;
+    font-weight: 800;
+}
+.chips{
+   width:4rem;
+   text-align: center;
 }
 .chip-active{
     background-color: var(--primaryColor);

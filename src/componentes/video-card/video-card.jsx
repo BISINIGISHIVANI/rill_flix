@@ -18,7 +18,7 @@ export default function VideoCard({
     return (
         <div className="video-card-set"key={id}>
             <div className="videocard-img position-relative">
-                <img src={thumbnailImg}alt="video-image"/>
+                <img src={thumbnailImg}alt="video"/>
                 <div className="position-absolute video-timer">
                 <span>{videoSpan}</span>
                 </div>
@@ -33,6 +33,10 @@ export default function VideoCard({
                             <div>
                                 <h3>{videoTitle}</h3>
                                 <span>{videoSubtitle}</span>
+                                <div>
+                                <span>{videoViews} Views</span>
+                                <span>.{videoPublishedYear}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -51,10 +55,7 @@ export default function VideoCard({
                 </div>
                 <div className="flex-row flex-center flex-space-between">
                     <div></div>
-                    <div>
-                    <span>{videoViews} Views</span>
-                    <span>.{videoPublishedYear}</span>
-                    </div>
+                    
                 </div>
             </div>
         </div>

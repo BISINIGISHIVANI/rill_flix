@@ -7,18 +7,14 @@ export default function Sidebar() {
   return (
     <div>
       <aside className="sidebar-content">
-        {/* <div className="flex-row flex-space-between padding-top cursor-pointer">
-          <span>123</span>
-          <span>X</span>
-        </div> */}
-        <ul className="flex-col gap-md flex-center bd-rht cursor-pointer ">
+        <ul className="flex-col gap-md flex-center cursor-pointer ">
           <div className="flex-row gap list-none">
             <div className="flex-col icon-set" onClick={sideBarToggle}>
-              <li><img className="" src={ExploreIcn}alt="explore-icon" /></li>
-              <li><img className="" src={historyIcn} alt="" /></li>
-              <li><img className="" src={watchlaterIcn}alt="" /></li>
-              <li><img className=""src={likedIcn}alt=""/></li>
-              <li><img className=""src={moreIcn}alt=""/></li>
+              <li><img  src={ExploreIcn}alt="explore-icon" /></li>
+              <li><img  src={historyIcn} alt="toggle-icn" /></li>
+              <li><img  src={watchlaterIcn}alt="toggle-icn" /></li>
+              <li><img src={likedIcn}alt="toggle-icn"/></li>
+              <li><img src={moreIcn}alt="toggle-icn"/></li>
             </div>
             {sideBar && (
               <div className="flex-col icn-content">
