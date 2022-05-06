@@ -3,8 +3,10 @@ import { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import "./navbar.css";
 import {useAuth} from "../../hooks/context/auth-context";
+import { useSearchFilter } from "../../hooks/context/filter-context";
 export default function Navbar(){
   const {authState,authDispatch}=useAuth();
+  const {videoState,dispatch}=useSearchFilter()
   const navigate=useNavigate()
   const authName=authState.user;
   const checkUserStatus=(authName)=>{
@@ -35,7 +37,17 @@ export default function Navbar(){
         </div>
         </Link>
         <div className="search-box flex-row">
-          <input className="input-search" type="search" />
+          <input 
+          className="input-search" 
+          type="search" 
+          value={videoState.searchQuery}
+          onChange={(event) =>
+            dispatch({
+              type: "SEARCH_VIDEOS",
+              payload: event.target.value.toLowerCase()
+            })
+          }
+          />
           <img className="search-icn" src={searchIcn} alt="search" />
         </div>
         <div className="user-profile">
