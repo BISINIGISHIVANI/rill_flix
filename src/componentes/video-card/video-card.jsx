@@ -1,24 +1,40 @@
 import { avatarIcn } from "../../assests/icons/icon";
 import "./video-card.css";
 import {useState} from "react";
-export default function VideoCard({
-    thumbnailImg,
-    id,
-    videoSubtitle,
-    videoTitle,
-    videoCategory,
-    videoSpan,
-    videoViews,
-    videoPublishedYear
+import { useAuth } from "../../hooks/context/auth-context";
+import { useLike } from "../../hooks/context/likes-context";
+import {useNavigate} from "react-router";
+import { useVideos } from "../../hooks/context/video-context";
+import { addToLike,deleteLiked } from "../../services/likes.services";
+export default function VideoCard({_id,thumbNail,title,videoSpan, subtitle,views, publishedYear
 }){
     const [isMore,setIsMore]=useState(false);
     const BtnMoreToggle=()=>{
         setIsMore((value)=>!value)
     }
+    const {videos}=useVideos()
+    const {authState:{token}}=useAuth();
+    const {likeState:{likes}, likeDispatch }=useLike();
+    const navigate=useNavigate();
+  const likeVideoHandler = () => {
+    if (token) {
+      const selectedVideo = videos.find((item) => item._id === _id)
+      addToLike(selectedVideo, token, likeDispatch)
+    } else {
+      navigate('/signin')
+      alert('login first')
+    }
+  }
+const checkLikeHandler=()=>{
+    return likes.find(item => item._id === _id)
+}
+const checkLikeAction=(_id)=>{
+    return checkLikeHandler(_id) ? deleteLiked(_id,token,likeDispatch) :likeVideoHandler(_id)
+}
     return (
-        <div className="video-card-set"key={id}>
+        <div className="video-card-set"key={_id}>
             <div className="videocard-img position-relative">
-                <img src={thumbnailImg}alt="video"/>
+                <img src={thumbNail}alt="video"/>
                 <div className="position-absolute video-timer">
                 <span>{videoSpan}</span>
                 </div>
@@ -31,11 +47,11 @@ export default function VideoCard({
                     <div className="views-date-info flex-col">
                         <div className="flex-row flex-center gap-md">
                             <div>
-                                <h3>{videoTitle}</h3>
-                                <span>{videoSubtitle}</span>
+                                <h3>{title}</h3>
+                                <span>{subtitle}</span>
                                 <div>
-                                <span>{videoViews} Views</span>
-                                <span>.{videoPublishedYear}</span>
+                                <span>{views} Views</span>
+                                <span>.{publishedYear}</span>
                                 </div>
                             </div>
                         </div>
@@ -46,16 +62,14 @@ export default function VideoCard({
                         </div>
                         {isMore && 
                         (<div className="position-absolute flex-col gap more-box">
-                            <label className="hover-white"> <i onClick={BtnMoreToggle}className="fa-solid fa-thumbs-up like "></i>Like</label>
+                               <label className="hover-white" onClick={()=>checkLikeAction(_id)}> 
+                                <i onClick={BtnMoreToggle}className="fa-solid fa-thumbs-up like "></i>
+                                 {checkLikeHandler(_id)? "Liked": "Like"}</label>
                             <label><i className="fa-solid fa-bookmark watch-later"></i>Bookmark</label>
                             <label><i className="fa-solid fa-folder-plus playlist"></i> WatchLater</label>
                         </div>
                         )}
                     </div>
-                </div>
-                <div className="flex-row flex-center flex-space-between">
-                    <div></div>
-                    
                 </div>
             </div>
         </div>
