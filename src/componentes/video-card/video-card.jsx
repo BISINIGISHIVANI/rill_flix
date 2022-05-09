@@ -22,7 +22,7 @@ export default function VideoCard({_id,thumbNail,title,videoSpan, subtitle,views
       addToLike(selectedVideo, token, likeDispatch)
     } else {
       navigate('/signin')
-      alert('login first')
+      alert('login to  account like video')
     }
   }
 const checkLikeHandler=()=>{
@@ -61,9 +61,9 @@ const checkLikeAction=(_id)=>{
                             <i onClick={BtnMoreToggle}className="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                         {isMore && 
-                        (<div className="position-absolute flex-col gap more-box">
+                        (<div onClick={BtnMoreToggle}className="position-absolute flex-col gap more-box">
                                <label className="hover-white" onClick={()=>checkLikeAction(_id)}> 
-                                <i onClick={BtnMoreToggle}className="fa-solid fa-thumbs-up like "></i>
+                                <i className="fa-solid fa-thumbs-up like "></i>
                                  {checkLikeHandler(_id)? "Liked": "Like"}</label>
                             <label><i className="fa-solid fa-bookmark watch-later"></i>Bookmark</label>
                             <label><i className="fa-solid fa-folder-plus playlist"></i> WatchLater</label>

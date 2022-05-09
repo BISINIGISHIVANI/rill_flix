@@ -17,7 +17,7 @@ export const VideoLikedPage=()=>{
                 <div className="bd-lft mg-sm">
                 {likes.length >0 ? (
                   likes.map((item) => {
-                   return <div>
+                   return <div key={item._id}>
                        <h2>Liked videos</h2>
                        <LikedCard key={item._id} {...item} />
                        </div>

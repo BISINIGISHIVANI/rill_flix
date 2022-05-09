@@ -20,9 +20,7 @@ ReactDOM.render(
     <LikeVideoContextProvider >
     <FilterProvider>
     <VideoProvider>
-    
     <App />
-    
     </VideoProvider>
     </FilterProvider>
     </LikeVideoContextProvider>
