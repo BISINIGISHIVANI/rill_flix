@@ -5,7 +5,7 @@ const VideoContext=createContext(null);
 export const useVideos=()=>useContext(VideoContext);
 export const VideoProvider=({children})=>{
     const [videos,setVideos]=useState([])
-    useEffect(()=>getVideoData(setVideos),[])
+    useEffect(()=>{getVideoData(setVideos)},[])
     return <VideoContext.Provider value={{videos}}>
         {children}
     </VideoContext.Provider>

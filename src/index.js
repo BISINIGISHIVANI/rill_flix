@@ -8,6 +8,7 @@ import { AuthProvider } from "./hooks/context/auth-context";
 import { makeServer } from "./server";
 import { VideoProvider } from "./hooks/context/video-context";
 import { FilterProvider } from "./hooks/context/filter-context";
+import {LikeVideoContextProvider} from "./hooks/context/likes-context"
 
 // Call make Server
 makeServer();
@@ -16,11 +17,13 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
     <AuthProvider>
+    <LikeVideoContextProvider >
     <FilterProvider>
     <VideoProvider>
     <App />
     </VideoProvider>
     </FilterProvider>
+    </LikeVideoContextProvider>
     </AuthProvider>
     </Router>
   </React.StrictMode>,
