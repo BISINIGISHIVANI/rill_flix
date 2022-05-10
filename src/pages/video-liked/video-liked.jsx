@@ -7,7 +7,7 @@ import {LikedCard} from "../video-liked/liked-card"
 export const VideoLikedPage=()=>{
     const {authState:{token}}=useAuth()
     const { likeState:{likes}, likeDispatch } = useLike()
-    useEffect(()=>getLikedVideo(token,likeDispatch),[])
+    useEffect(()=>{getLikedVideo(token,likeDispatch)})
     return <div>
         <Navbar/>
             <div className="flex-row">
