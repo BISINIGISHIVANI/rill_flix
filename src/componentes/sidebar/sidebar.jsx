@@ -23,12 +23,14 @@ export default function Sidebar() {
                 <Link to="/home">
                 <li className="margin-top"> Explore</li> </Link>
                 <li>History</li>
+                <Link to="/watchlater">
                 <li> Watchlater</li>
+                </Link>
                 <Link to="/likes">
                 <li>Liked videos</li></Link>
                 <li> More <i class="fa-solid fa-circle-chevron-down"></i></li>
                 <div>
-                  <li>Kids</li>
+                  <li>Playlists</li>
                   <li>Shorts</li>
                 </div>
               </div>
