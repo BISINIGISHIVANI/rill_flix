@@ -22,7 +22,7 @@ export const LikedCard=({_id,thumbNail,videoSpan,title,subtitle})=>{
                     </div>
                     <div>
                          <span>Remove Like</span>
-                          <i onClick={unlikeHandler}className="fa-solid fa-trash padding-md"></i>
+                          <i onClick={unlikeHandler}className="fa-solid fa-trash padding-md cursor-pointer"></i>
                     </div>
                      </div>
                      
