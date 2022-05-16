@@ -6,7 +6,7 @@ export const WatchLaterCard=({_id,thumbNail,videoSpan,title,subtitle})=>{
     const {authState:{token}}=useAuth();
     const {watchlaterDispatch}=useWatchlater();
     const [isMore,BtnMoreToggle]=useMoreToggle()
-    const unlikeHandler = () => {
+    const deleteFromWatchlterHandler = () => {
         deleteWatchlaterVideo(_id,token, watchlaterDispatch)
     }
     return <div className="flex-col gap-md mg-sm">
@@ -27,18 +27,10 @@ export const WatchLaterCard=({_id,thumbNail,videoSpan,title,subtitle})=>{
                                 <i onClick={BtnMoreToggle}className="fa-solid fa-ellipsis-vertical padding-md"></i>
                             </div>
                             {isMore && 
-                            (<div onClick={BtnMoreToggle}className="position-absolute flex-col gap more-box">
-                                <label onClick={unlikeHandler}>
+                            (<div onClick={BtnMoreToggle}className="flex-col gap place-items more-box">
+                                <label onClick={deleteFromWatchlterHandler}>
                                   <i className="fa-solid fa-trash"></i>
                                   WatchLater
-                                </label>
-                                <label className="hover-white">
-                                    <i className="fa-solid fa-thumbs-up like "></i>
-                                    Like
-                                </label>
-                                <label>
-                                    <i className="fa-solid fa-bookmark watch-later"></i>
-                                    Playlist
                                 </label>
                             </div>
                             )}

@@ -14,7 +14,8 @@ export default function Sidebar() {
             <Link to="/home">
               <li><img  src={ExploreIcn}alt="explore-icon" /></li></Link>
               <li><img  src={historyIcn} alt="toggle-icn" /></li>
-              <li><img  src={watchlaterIcn}alt="toggle-icn" /></li>
+              <Link to="/watchlater">
+              <li><img  src={watchlaterIcn}alt="toggle-icn" /></li></Link>
               <Link to="/likes"><li><img src={likedIcn}alt="toggle-icn"/></li></Link>
               <li><img src={moreIcn}alt="toggle-icn"/></li>
             </div>
@@ -28,11 +29,7 @@ export default function Sidebar() {
                 </Link>
                 <Link to="/likes">
                 <li>Liked videos</li></Link>
-                <li> More <i class="fa-solid fa-circle-chevron-down"></i></li>
-                <div>
-                  <li>Playlists</li>
-                  <li>Shorts</li>
-                </div>
+                <li>Playlists</li>
               </div>
             )}
           </div>

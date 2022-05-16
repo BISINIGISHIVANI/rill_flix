@@ -79,9 +79,9 @@ const checkWatchlaterAction=(_id)=>{
                                 <i className="fa-solid fa-thumbs-up like "></i>
                                  {checkLikeHandler(_id)? "Liked": "Like"}</label>
                             <label>
-                                <i className="fa-solid fa-bookmark watch-later"></i>Playlist</label>
+                                <i className="fa-solid fa-folder-plus watch-later"></i>Playlist</label>
                             <label onClick={()=>checkWatchlaterAction(_id)}>
-                                <i className="fa-solid fa-folder-plus playlist"></i>
+                                <i className="fa-solid fa-bookmark playlist"></i>
                                 {checkWatchlater(_id)? <label>WatchLater <i className="fa-solid fa-check"></i></label>:"WatchLater"} </label>
                         </div>
                         )}
