@@ -25,7 +25,6 @@ export function SignUpPage() {
         try {
           const response = await axios.post("/api/auth/signup", user);
           if (response.status === 201) {
-    
             localStorage.setItem("token", response.data.encodedToken);
             localStorage.setItem("user", JSON.stringify(response.data.createdUser));
     

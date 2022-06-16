@@ -1,7 +1,13 @@
-.videocard-img img,.video-card-set {
-    width: 15rem;
+.videocard-img img,.video-card-set{
+    width: 17rem;
 }
-
+.more-icn>.fa-solid.fa-ellipsis-vertical{
+    padding: 0.4rem 0.8rem;
+    border-radius: 50%;
+}
+.more-icn>.fa-solid.fa-ellipsis-vertical:hover{
+    background-color: var(--primaryColor);
+}
 .video-profile {
     width: 1.5rem;
     height: 1.5rem;
@@ -37,4 +43,40 @@
 }
 .views-date-info h3{
     font-size: 1rem;
+}
+.flex-end{
+    justify-content: flex-end;
+}
+.img-avtar{
+    width:4rem;
+}
+.single-video-container{
+    width: 65.25%;
+}
+.sample-video-note{
+    width:25rem;
+    height:24rem;
+    border: 2px solid var(--mainBlack);
+}
+.video-note-input[type="text"]{
+ border:none;
+ border-bottom: 2px solid var(--mainBlack);
+ outline: none;
+ margin:0.3rem 0.4rem;
+ padding: 1rem;
+ font-size: 1.2rem;
+}
+.video-note-input{
+    border-bottom: 2px solid var(--mainBlack);
+}
+.text-justify{
+    text-align: justify;
+}
+@media screen and (max-width:450px) {
+    .single-video-container{
+        width: 100%;
+    }
+    .video-icn{
+        margin-left:15rem;
+    }
 }
