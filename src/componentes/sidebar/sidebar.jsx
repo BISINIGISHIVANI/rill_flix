@@ -35,7 +35,7 @@ export default function Sidebar() {
                   <img src={likedIcn} alt="toggle-icn" />
                 </li>
               </Link>
-              <Link to="/playlists">
+              <Link to="/playlist">
                 <li>
                   <img src={moreIcn} alt="toggle-icn" />
                 </li>
@@ -43,7 +43,7 @@ export default function Sidebar() {
             </div>
             {sideBar && (
               <div className="flex-col icn-content">
-                <Link to="/home">
+                <Link to="/explore">
                   <li className="margin-top"> Explore</li>{" "}
                 </Link>
                 <li>History</li>
@@ -53,7 +53,7 @@ export default function Sidebar() {
                 <Link to="/likes">
                   <li>Liked videos</li>
                 </Link>
-                <Link to="/playlists">
+                <Link to="/playlist">
                   <li>Playlists</li>
                 </Link>
               </div>

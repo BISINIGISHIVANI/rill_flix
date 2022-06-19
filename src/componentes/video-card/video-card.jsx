@@ -11,17 +11,15 @@ import {
   deleteWatchlaterVideo,
 } from "../../services/watchlater.services";
 import { useWatchlater } from "../../hooks/context/watchlater-context";
-// import { usePlaylistModal } from "../../hooks/context/playlist-modalProvider";
-import { usePlaylists } from "../../hooks/context/playlists-context";
-export default function VideoCard({
-  _id,
+
+export default function VideoCard(props) {
+  const { _id,
   thumbNail,
   title,
   videoSpan,
   subtitle,
   views,
-  publishedYear,
-}) {
+  publishedYear}=props;
   const [isMore, setIsMore] = useState(false);
   const BtnMoreToggle = () => {
     setIsMore((value) => !value);
@@ -38,7 +36,6 @@ export default function VideoCard({
     watchlaterState: { watchlater },
     watchlaterDispatch,
   } = useWatchlater();
-  const {playlists:{showModal},playlistsDispatch}=usePlaylists()
   const navigate = useNavigate();
   const likeVideoHandler = () => {
     if (token) {
@@ -69,14 +66,6 @@ export default function VideoCard({
       ? deleteWatchlaterVideo(_id, token, watchlaterDispatch)
       : WatchlaterHandler(_id);
   };
-  const checkPlaylistModal=(_id)=>{
-    if(token){
-       playlistsDispatch({
-         type: "SHOW_MODAL",
-         payload: { showModal },
-       });
-    }
-  }
   return (
     <div className="video-card-set" key={_id}>
       <div
@@ -106,7 +95,7 @@ export default function VideoCard({
             </div>
           </div>
           <div>
-            <div className="position-relative">
+            <div className="position-relative more-icn">
               <i
                 onClick={BtnMoreToggle}
                 className="fa-solid fa-ellipsis-vertical"
@@ -123,10 +112,6 @@ export default function VideoCard({
                 >
                   <i className="fa-solid fa-thumbs-up like "></i>
                   {checkLikeHandler(_id) ? "Liked" : "Like"}
-                </label>
-                <label onClick={checkPlaylistModal}>
-                  <i className="fa-solid fa-folder-plus watch-later"></i>
-                  Playlist
                 </label>
                 <label onClick={() => checkWatchlaterAction(_id)}>
                   <i className="fa-solid fa-bookmark playlist"></i>

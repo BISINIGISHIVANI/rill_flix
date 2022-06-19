@@ -72,11 +72,23 @@
 .text-justify{
     text-align: justify;
 }
+.card-width{
+    width:20rem;
+}
+.fa-left{
+    margin-left:0  0.5rem;
+}
+.card-responsive .img-responsive{
+    width:100%;
+}
+.simiar-card-mg{
+    margin:1rem 1.6rem;
+}
 @media screen and (max-width:450px) {
     .single-video-container{
         width: 100%;
     }
     .video-icn{
-        margin-left:15rem;
+        margin-left:10rem;
     }
 }

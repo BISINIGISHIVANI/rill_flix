@@ -13,8 +13,8 @@ export function SignInPage() {
         password: "",
     });
     const guestUser = {
-        email: "adarshbalika@gmail.com",
-        password: "adarshBalika123",
+      email: "bisingishivani@gmail.com",
+      password: "shivani123@",
     };
 
     const changeHandler = (event) => {
@@ -34,7 +34,7 @@ export function SignInPage() {
             localStorage.setItem("user", JSON.stringify(response.data.foundUser));
     
             authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } })
-            navigate("/home");
+            navigate("/explore");
           }
           else if (response.status === 404) {
             alert("Email not found");
