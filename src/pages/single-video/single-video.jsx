@@ -1,13 +1,47 @@
 import React, {useEffect, useState} from "react";
 import {avatarIcn} from "../../assests/icons/icon";
 import ReactPlayer from "react-player";
+import { useNavigate } from "react-router-dom";
 import {useParams} from "react-router-dom";
+import { useLike } from "../../hooks/context/likes-context";
+import { useAuth } from "../../hooks/context/auth-context";
+import {addToLike, deleteLiked} from "../../services/likes.services";
 import axios from "axios";
-import { Navbar} from "../../componentes";
+import { useWatchlater } from "../../hooks/context/watchlater-context";
+import {
+  addToWatchlaterVideo,
+  deleteWatchlaterVideo,
+} from "../../services/watchlater.services";
+import { useVideos } from "../../hooks/context/video-context";
+import { Navbar,VideoCard} from "../../componentes";
 export const SingleVideoPage = () => {
   const {videoId} = useParams();
   const [video, setVideo] = useState({});
   const [isTextOpen, setIsTextOpen] = useState(false);
+   const {
+     authState: {token},
+   } = useAuth();
+   const {videos}=useVideos()
+   const {
+     likeState: {likes},
+     likeDispatch,
+   } = useLike();
+    const {
+      watchlaterState: {watchlater},
+      watchlaterDispatch,
+    } = useWatchlater();
+   const navigate = useNavigate();
+   const checkLikeHandler = () => {
+     return likes.find((item) => item._id ===video._id);
+   };
+    const WatchlaterHandler = () => {
+      addToWatchlaterVideo(video, token, watchlaterDispatch);
+    };
+    const checkWatchlater = () => {
+      return watchlater.find((item) => item._id === video._id);
+    };
+    const simialrVideo=videos.filter((item)=>item.categoryName===video.categoryName)
+    const getSimilarCategory=simialrVideo.filter((item)=>item.title!==video.title)
   useEffect(() => {
     (async () => {
       try {
@@ -36,7 +70,6 @@ export const SingleVideoPage = () => {
           <div className="flex-row flex-space-between flex-wrap flex-center">
             <div className="flex-row gap">
               <img className="img-avtar" src={avatarIcn} alt="profile" />
-
               <div className="">
                 <h3>{video.title}</h3>
                 <span>{video.views} Views...</span>
@@ -44,19 +77,51 @@ export const SingleVideoPage = () => {
               </div>
             </div>
             <div className="flex-row gap-md video-icn">
-              <label className="flex-col">
-                <i className="fa-solid fa-thumbs-up like fa-2x cursor-pointer"></i>
-                Like
+              <label className="hover-white cursor-pointer flex-col">
+                {likes.find((item) => item._id === video._id) ? (
+                  <i
+                    onClick={() => deleteLiked(videoId, token, likeDispatch)}
+                    className="fa-solid fa-thumbs-up like fa-2x"
+                  ></i>
+                ) : (
+                  <i
+                    onClick={() => addToLike(video, token, likeDispatch)}
+                    className="fa-regular fa-thumbs-up fa-2x"
+                  ></i>
+                )}
+                {checkLikeHandler(video._id) ? "Liked" : "Like"}
               </label>
               <label className="flex-col">
                 <i className="fa-solid fa-folder-plus fa-2x"></i>
                 Save
               </label>
-              <label className="flex-col">
-                <i className="fa-solid fa-bookmark fa-2x"></i>
-                <label>Bookmark</label>
+              <label className="cursor-pointer flex-col">
+                {checkWatchlater() ? (
+                  <i
+                    onClick={() =>
+                      deleteWatchlaterVideo(video._id, token, watchlaterDispatch)
+                    }
+                    className="fa-solid fa-bookmark fa-2x playlist"
+                  ></i>
+                ) : (
+                  <i
+                    onClick={() => WatchlaterHandler(video._id)}
+                    className="fa-regular fa-bookmark fa-2x playlist"
+                  ></i>
+                )}
+                <label>WatchLater</label>
               </label>
             </div>
+          </div>
+          <div className="single-video-container padding-md">
+            <h2>{video.title}</h2>
+            <span
+              className="cursor-pointer"
+              onClick={() => setIsTextOpen(!isTextOpen)}
+            >
+              info:{video.subtitle} {isTextOpen ? "" : "...more"}{" "}
+            </span>
+            <p>{isTextOpen ? `${video.description}` : ""}</p>
           </div>
         </div>
         <div>
@@ -68,17 +133,13 @@ export const SingleVideoPage = () => {
               placeholder="write notes"
             />
           </div>
+          <div className="simiar-card-mg">
+            <h2 className="padding-md">watch simialr videos</h2>
+            {getSimilarCategory.map((video) => (
+              <VideoCard key={video._id} {...video} />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="single-video-container padding-md">
-        <h2>{video.title}</h2>
-        <span
-          className="cursor-pointer"
-          onClick={() => setIsTextOpen(!isTextOpen)}
-        >
-          info:{video.subtitle} {isTextOpen ? "" : "...more"}{" "}
-        </span>
-        <p>{isTextOpen ? `${video.description}` : ""}</p>
       </div>
     </div>
   );
