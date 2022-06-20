@@ -13,6 +13,8 @@ import {
   deleteWatchlaterVideo,
 } from "../../services/watchlater.services";
 import { useVideos } from "../../hooks/context/video-context";
+import { useHistory } from "../../hooks/context/history-context";
+import { addToHistory,deleteHistory } from "../../services/history.services";
 import { Navbar,VideoCard} from "../../componentes";
 export const SingleVideoPage = () => {
   const {videoId} = useParams();
@@ -30,6 +32,7 @@ export const SingleVideoPage = () => {
       watchlaterState: {watchlater},
       watchlaterDispatch,
     } = useWatchlater();
+    const {historyState:{history},historyDispatch}=useHistory()
    const checkLikeHandler = () => {
      return likes.find((item) => item._id ===video._id);
    };
@@ -49,11 +52,18 @@ export const SingleVideoPage = () => {
           data: {video},
         } = response;
         setVideo(video);
+        const checkHistoryArr=history.find((item)=>item._id===videoId)
+        if(checkHistoryArr){
+            deleteHistory(checkHistoryArr._id,token,historyDispatch)
+            addToHistory(checkHistoryArr,token,historyDispatch)
+        }else if(token){
+          addToHistory(video,token,historyDispatch)
+        }
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [videoId]);
+  }, [videoId,history,historyDispatch,token]);
   return (
     <div>
       <Navbar />
