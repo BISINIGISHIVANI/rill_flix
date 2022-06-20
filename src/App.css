@@ -206,7 +206,7 @@ a {
   border: 1px solid var(--primaryColor);
   z-index: 3;
 }
-@media screen  and (max-width:380px){
+@media screen  and (max-width:410px){
   .img-responsive{
     width:100%;
   }

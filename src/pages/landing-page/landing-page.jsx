@@ -10,7 +10,7 @@ export default function LandingPage(){
             <div className="padding-md landing-content">
                 <h2 className="padding-md">Rill Flix is video APP</h2>
                 <p className="padding-md">Watch anywhere anytime</p>
-                <Link to="/home">
+                <Link to="/explore">
                 <button className="primary-btn cursor-pointer margin-left">Watch Now</button>
                 </Link>
             </div>

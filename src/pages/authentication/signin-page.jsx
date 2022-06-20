@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link ,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../hooks/context/auth-context";
+import{ toast} from "react-toastify"
 import "./auth.css";
 export function SignInPage() {
     const {authDispatch}=useAuth();
@@ -13,8 +14,8 @@ export function SignInPage() {
         password: "",
     });
     const guestUser = {
-        email: "adarshbalika@gmail.com",
-        password: "adarshBalika123",
+      email: "bisingishivani@gmail.com",
+      password: "shivani123@",
     };
 
     const changeHandler = (event) => {
@@ -34,16 +35,16 @@ export function SignInPage() {
             localStorage.setItem("user", JSON.stringify(response.data.foundUser));
     
             authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } })
-            navigate("/home");
+            navigate("/explore");
           }
           else if (response.status === 404) {
-            alert("Email not found");
+            toast.warn("Email not found");
           }
           else if (response.status === 401) {
-            alert("password or email not correct");
+            toast.warn("password or email not correct");
           }
           else if (response.status === 500) {
-            alert("Server Error");
+            toast.error("Server Error");
           }
         }
         catch (error) {
@@ -61,9 +62,10 @@ export function SignInPage() {
     const submitHandler=(e)=>{
         e.preventDefault();
         if(!checkInputsAreNotEmpty(user)){
-            alert("feild are not empty")
+            toast.info("feild are not empty")
         }else{
             signInHandler(user,authDispatch,navigate)
+            toast.success("account successfully signin")
         }
     }
     return <>
