@@ -2,12 +2,14 @@ import { useAuth } from "../../hooks/context/auth-context";
 import { useWatchlater } from "../../hooks/context/watchlater-context";
 import { deleteWatchlaterVideo } from "../../services/watchlater.services";
 import { useNavigate } from "react-router";
+import {toast} from "react-toastify"
 export const WatchLaterCard=({_id,thumbNail,videoSpan,title,subtitle})=>{
     const {authState:{token}}=useAuth();
     const {watchlaterDispatch}=useWatchlater();
     const navigate=useNavigate()
     const deleteFromWatchlterHandler = () => {
         deleteWatchlaterVideo(_id,token, watchlaterDispatch)
+        toast.error("removed from watchlater")
     }
     return (
       <div className="flex-col gap-md mg-sm">

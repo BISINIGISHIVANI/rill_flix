@@ -3,6 +3,7 @@ import { usePwdToggle } from "./password-toggle";
 import { useState } from "react";
 import { Link ,useNavigate } from "react-router-dom";
 import axios from "axios";
+import{ toast} from "react-toastify"
 import { useAuth } from "../../hooks/context/auth-context";
 
 export function SignUpPage() {
@@ -32,10 +33,10 @@ export function SignUpPage() {
             navigate("/home");
           }
           else if (response.status === 422) {
-            alert("account alerady exists");
+            toast.info("account alerady exists");
           }
           else if (response.status === 500) {
-            alert("Server Error");
+            toast.error("Server Error");
           }
         }
         catch (error) {
@@ -53,12 +54,13 @@ export function SignUpPage() {
     const submitHandler=(e)=>{
         e.preventDefault();
         if(!checkInputsAreNotEmpty(user)){
-            alert("feild are not empty")
+            toast.warn("feild are not empty")
         }else if(user.password !==user.confirmPassword){
-            alert("password should be similar")
+            toast.warn("password should be similar")
             setUser({...user,passwordSimilar:true})
         }else{
             SignUpHandler(user,authDispatch,navigate)
+            toast.success("account successfully signup")
         }
     }
     return <>

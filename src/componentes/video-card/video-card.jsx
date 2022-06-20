@@ -11,7 +11,7 @@ import {
   deleteWatchlaterVideo,
 } from "../../services/watchlater.services";
 import { useWatchlater } from "../../hooks/context/watchlater-context";
-
+import {toast} from "react-toastify";
 export default function VideoCard(props) {
   const { _id,
   thumbNail,
@@ -41,9 +41,10 @@ export default function VideoCard(props) {
     if (token) {
       const selectedVideo = videos.find((item) => item._id === _id);
       addToLike(selectedVideo, token, likeDispatch);
+      toast.success(`${selectedVideo.title} added to like`)
     } else {
       navigate("/signin");
-      alert("login to  account like video");
+      toast.warn("kindly,login to  account like video");
     }
   };
   const checkLikeHandler = () => {
@@ -57,6 +58,7 @@ export default function VideoCard(props) {
   const WatchlaterHandler = () => {
     const selectVideo = videos.find((item) => item._id === _id);
     addToWatchlaterVideo(selectVideo, token, watchlaterDispatch);
+    toast.success(`${selectVideo.title} added to watchlater`)
   };
   const checkWatchlater = () => {
     return watchlater.find((item) => item._id === _id);

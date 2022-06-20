@@ -2,6 +2,7 @@ import {useAuth} from "../../hooks/context/auth-context";
 import {useLike} from "../../hooks/context/likes-context";
 import {deleteLiked} from "../../services/likes.services";
 import { useNavigate } from "react-router";
+import{ toast} from "react-toastify"
 export const LikedCard = ({_id, thumbNail, videoSpan, title, subtitle}) => {
   const {
     authState: {token},
@@ -10,6 +11,7 @@ export const LikedCard = ({_id, thumbNail, videoSpan, title, subtitle}) => {
   const {likeDispatch} = useLike();
   const unlikeHandler = () => {
     deleteLiked(_id, token, likeDispatch);
+    toast.error("removed from likes")
   };
   return (
     <div className="flex-col gap-md mg-sm">

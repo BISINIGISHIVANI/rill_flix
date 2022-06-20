@@ -7,6 +7,7 @@ import { useLike } from "../../hooks/context/likes-context";
 import { useAuth } from "../../hooks/context/auth-context";
 import {addToLike, deleteLiked} from "../../services/likes.services";
 import axios from "axios";
+import {toast} from "react-toastify"
 import { useWatchlater } from "../../hooks/context/watchlater-context";
 import {
   addToWatchlaterVideo,
@@ -80,12 +81,13 @@ export const SingleVideoPage = () => {
               <label className="hover-white cursor-pointer flex-col">
                 {likes.find((item) => item._id === video._id) ? (
                   <i
-                    onClick={() => deleteLiked(videoId, token, likeDispatch)}
+                    onClick={() =>{ deleteLiked(videoId, token, likeDispatch);
+                      toast.info(`${video.title} deleted successfully`)}}
                     className="fa-solid fa-thumbs-up like fa-2x"
                   ></i>
                 ) : (
                   <i
-                    onClick={() => addToLike(video, token, likeDispatch)}
+                    onClick={() =>{ addToLike(video, token, likeDispatch);toast.success(`${video.title} added to likes`)}}
                     className="fa-regular fa-thumbs-up fa-2x"
                   ></i>
                 )}
@@ -99,13 +101,17 @@ export const SingleVideoPage = () => {
                 {checkWatchlater() ? (
                   <i
                     onClick={() =>
-                      deleteWatchlaterVideo(video._id, token, watchlaterDispatch)
+                     { deleteWatchlaterVideo(video._id, token, watchlaterDispatch);
+                    toast.info(`${video.title} deleted successfully`)
+                    }
                     }
                     className="fa-solid fa-bookmark fa-2x playlist"
                   ></i>
                 ) : (
                   <i
-                    onClick={() => WatchlaterHandler(video._id)}
+                    onClick={() =>{ WatchlaterHandler(video._id);
+                    toast.success(`${video.title} added watchlater`)
+                    }}
                     className="fa-regular fa-bookmark fa-2x playlist"
                   ></i>
                 )}
