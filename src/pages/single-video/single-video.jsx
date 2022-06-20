@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {avatarIcn} from "../../assests/icons/icon";
 import ReactPlayer from "react-player";
-import { useNavigate } from "react-router-dom";
 import {useParams} from "react-router-dom";
 import { useLike } from "../../hooks/context/likes-context";
 import { useAuth } from "../../hooks/context/auth-context";
@@ -31,7 +30,6 @@ export const SingleVideoPage = () => {
       watchlaterState: {watchlater},
       watchlaterDispatch,
     } = useWatchlater();
-   const navigate = useNavigate();
    const checkLikeHandler = () => {
      return likes.find((item) => item._id ===video._id);
    };
