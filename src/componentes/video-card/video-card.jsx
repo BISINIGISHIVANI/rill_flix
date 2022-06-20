@@ -56,9 +56,15 @@ export default function VideoCard(props) {
       : likeVideoHandler(_id);
   };
   const WatchlaterHandler = () => {
-    const selectVideo = videos.find((item) => item._id === _id);
-    addToWatchlaterVideo(selectVideo, token, watchlaterDispatch);
-    toast.success(`${selectVideo.title} added to watchlater`)
+    if(token){
+      const selectVideo = videos.find((item) => item._id === _id);
+      addToWatchlaterVideo(selectVideo, token, watchlaterDispatch);
+      toast.success(`${selectVideo.title} added to watchlater`);
+    }else{
+       navigate("/signin");
+       toast.warn("kindly,login to  account");
+    }
+    
   };
   const checkWatchlater = () => {
     return watchlater.find((item) => item._id === _id);
@@ -68,10 +74,18 @@ export default function VideoCard(props) {
       ? deleteWatchlaterVideo(_id, token, watchlaterDispatch)
       : WatchlaterHandler(_id);
   };
+  const navigateSingleVideo=()=>{
+    if(token){
+      navigate(`/video/${_id}`);
+    }else{
+      navigate("/signin")
+      toast.warn("kindly,login to  account");
+    }
+  }
   return (
     <div className="video-card-set" key={_id}>
       <div
-        onClick={()=>{navigate(`/video/${_id}`)}}
+        onClick={navigateSingleVideo}
         className="videocard-img position-relative"
       >
         <img src={thumbNail} alt="video" />
