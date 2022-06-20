@@ -9,6 +9,7 @@ import { VideoProvider } from "./hooks/context/video-context";
 import { FilterProvider } from "./hooks/context/filter-context";
 import {LikeVideoContextProvider} from "./hooks/context/likes-context"
 import{ WatchLaterProvider} from "./hooks/context/watchlater-context"
+import { HistoryVideoContextProvider } from "./hooks/context/history-context";
 
 
 
@@ -19,15 +20,17 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <WatchLaterProvider>
-          <LikeVideoContextProvider >
-            <FilterProvider>
-              <VideoProvider>
-                <App />
-              </VideoProvider>
-            </FilterProvider>
-          </LikeVideoContextProvider>
-        </WatchLaterProvider>
+        <HistoryVideoContextProvider>
+          <WatchLaterProvider>
+            <LikeVideoContextProvider >
+              <FilterProvider>
+                <VideoProvider>
+                  <App />
+                </VideoProvider>
+              </FilterProvider>
+            </LikeVideoContextProvider>
+          </WatchLaterProvider>
+        </HistoryVideoContextProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,

@@ -7,6 +7,7 @@ import { VideoWatchLaterPage } from "../pages/video-watchlater/video-watchlater"
 import { VideoPlaylistPage } from "../pages/video-playlist/video-playlist";
 import { SinglePlaylistPage } from "../pages/single-playlist/single-playlist";
 import {SingleVideoPage} from "../pages/single-video/single-video";
+import { VideoHistoryPage } from "../pages/video-history/video-history";
 import{ VideoList} from "../pages";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,6 +23,7 @@ export default function PublicRoute() {
         <Route path="/video/:videoId" element={<SingleVideoPage />} />
         <Route path="/likes" element={<VideoLikedPage />} />
         <Route path="/watchlater" element={<VideoWatchLaterPage />} />
+        <Route path="/history"element={<VideoHistoryPage/>}/>
         <Route path="/playlist" element={<VideoPlaylistPage />} />
         <Route path="playlist/:playlistId" element={<SinglePlaylistPage />} />
       </Routes>

@@ -22,9 +22,11 @@ export default function Sidebar() {
                   <img src={ExploreIcn} alt="explore-icon" />
                 </li>
               </Link>
-              <li>
-                <img src={historyIcn} alt="toggle-icn" />
-              </li>
+              <Link to="/history">
+                <li>
+                  <img src={historyIcn} alt="toggle-icn" />
+                </li>
+              </Link>
               <Link to="/watchlater">
                 <li>
                   <img src={watchlaterIcn} alt="toggle-icn" />
@@ -46,7 +48,9 @@ export default function Sidebar() {
                 <Link to="/explore">
                   <li className="margin-top"> Explore</li>{" "}
                 </Link>
-                <li>History</li>
+                <Link to="/history">
+                  <li>History</li>
+                </Link>
                 <Link to="/watchlater">
                   <li> Watchlater</li>
                 </Link>
