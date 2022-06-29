@@ -107,6 +107,7 @@ a {
   font-family: "Water Brush", cursive;
   line-height: 1rem;
   letter-spacing: 0.3rem;
+  border:none;
 }
 
 .search-icn {
@@ -189,7 +190,7 @@ a {
   align-items: center;
 }
 .img-responsive{
-  width:13rem;
+  width:22.8rem;
   height:100%;
 }
 .bd-sm{
