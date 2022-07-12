@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Footer } from "../componentes";
-import { LandingPage } from "../pages";
+import { ErrorPage, LandingPage } from "../pages";
 import { SignInPage, SignUpPage, ForgotPage } from "../pages/authentication";
 import { VideoLikedPage } from "../pages/video-liked/video-liked";
 import { VideoWatchLaterPage } from "../pages/video-watchlater/video-watchlater";
@@ -26,6 +26,7 @@ export default function PublicRoute() {
         <Route path="/history"element={<VideoHistoryPage/>}/>
         <Route path="/playlist" element={<VideoPlaylistPage />} />
         <Route path="playlist/:playlistId" element={<SinglePlaylistPage />} />
+        <Route path="*" element={<ErrorPage/>}/>
       </Routes>
       <Footer />
       <ToastContainer
