@@ -9,7 +9,6 @@ export const VideoHistoryPage=()=>{
        authState: {token},
      } = useAuth();
     const {historyState:{history},historyDispatch}=useHistory();
-    // useEffect(()=>{addToHistory(token,historyDispatch)})
     const deleteAllHistoryHandler=()=>{
         deleteAllHistory(token,historyDispatch)
     }
@@ -40,7 +39,7 @@ export const VideoHistoryPage=()=>{
                   );
                 })
               ) : (
-                <h1>No history videos here</h1>
+                <h1>No history videos</h1>
               )}
             </div>
           </div>

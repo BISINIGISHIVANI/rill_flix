@@ -1,47 +1,43 @@
-import { avatarIcn } from "../../assests/icons/icon";
+import {avatarIcn} from "../../assests/icons/icon";
 import "./video-card.css";
-import { useState } from "react";
-import { useAuth } from "../../hooks/context/auth-context";
-import { useLike } from "../../hooks/context/likes-context";
-import { useNavigate } from "react-router";
-import { useVideos } from "../../hooks/context/video-context";
-import { addToLike, deleteLiked } from "../../services/likes.services";
+import {useState} from "react";
+import {useAuth} from "../../hooks/context/auth-context";
+import {useLike} from "../../hooks/context/likes-context";
+import {useNavigate} from "react-router";
+import {useVideos} from "../../hooks/context/video-context";
+import {addToLike, deleteLiked} from "../../services/likes.services";
 import {
   addToWatchlaterVideo,
   deleteWatchlaterVideo,
 } from "../../services/watchlater.services";
-import { useWatchlater } from "../../hooks/context/watchlater-context";
+import {useWatchlater} from "../../hooks/context/watchlater-context";
 import {toast} from "react-toastify";
 export default function VideoCard(props) {
-  const { _id,
-  thumbNail,
-  title,
-  videoSpan,
-  subtitle,
-  views,
-  publishedYear}=props;
+  const {_id, thumbNail, title, videoSpan, subtitle, views, publishedYear} =
+    props;
   const [isMore, setIsMore] = useState(false);
   const BtnMoreToggle = () => {
     setIsMore((value) => !value);
   };
-  const { videos } = useVideos();
+  const {videos} = useVideos();
   const {
-    authState: { token },
+    authState: {token},
   } = useAuth();
   const {
-    likeState: { likes },
+    likeState: {likes},
     likeDispatch,
   } = useLike();
   const {
-    watchlaterState: { watchlater },
+    watchlaterState: {watchlater},
     watchlaterDispatch,
   } = useWatchlater();
   const navigate = useNavigate();
+
   const likeVideoHandler = () => {
     if (token) {
       const selectedVideo = videos.find((item) => item._id === _id);
       addToLike(selectedVideo, token, likeDispatch);
-      toast.success(`${selectedVideo.title} added to like`)
+      toast.success(`${selectedVideo.title} added to like`);
     } else {
       navigate("/signin");
       toast.warn("kindly,login to  account like video");
@@ -56,15 +52,14 @@ export default function VideoCard(props) {
       : likeVideoHandler(_id);
   };
   const WatchlaterHandler = () => {
-    if(token){
+    if (token) {
       const selectVideo = videos.find((item) => item._id === _id);
       addToWatchlaterVideo(selectVideo, token, watchlaterDispatch);
       toast.success(`${selectVideo.title} added to watchlater`);
-    }else{
-       navigate("/signin");
-       toast.warn("kindly,login to  account");
+    } else {
+      navigate("/signin");
+      toast.warn("kindly,login to  account");
     }
-    
   };
   const checkWatchlater = () => {
     return watchlater.find((item) => item._id === _id);
@@ -74,14 +69,14 @@ export default function VideoCard(props) {
       ? deleteWatchlaterVideo(_id, token, watchlaterDispatch)
       : WatchlaterHandler(_id);
   };
-  const navigateSingleVideo=()=>{
-    if(token){
+  const navigateSingleVideo = () => {
+    if (token) {
       navigate(`/video/${_id}`);
-    }else{
-      navigate("/signin")
+    } else {
+      navigate("/signin");
       toast.warn("kindly,login to  account");
     }
-  }
+  };
   return (
     <div className="video-card-set" key={_id}>
       <div
