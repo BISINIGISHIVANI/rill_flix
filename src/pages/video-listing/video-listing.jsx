@@ -6,8 +6,9 @@ import {GetSearchData} from "../../hooks/utils/index"
 import { useVideos } from "../../hooks/context/video-context";
 import { FilterLabel } from "../../helpers/filter-label";
 import { useState } from "react";
+import { VideoLoader } from "../../componentes/video-loader/video-loader";
 export default function VideoList(){
-    const {videos}=useVideos();
+    const {videos,isLoading}=useVideos();
     const [isLabel,setIsLabel]=useState("All")
     const {videoState:{searchQuery}}=useSearchFilter();
     const searchData=GetSearchData(videos,searchQuery);
@@ -55,9 +56,14 @@ export default function VideoList(){
               </div>
             </div>
             <div className="video-list cursor-pointer">
-              {getFilterLabel.map((video) => (
+              { isLoading ? (
+                  videos.map((video)=>
+                  <VideoLoader key={video._id}/>
+                  )
+              ):""}
+              {getFilterLabel.map((video) =>
                 <VideoCard key={video._id} {...video} />
-              ))}
+              )}
             </div>
           </div>
         </div>

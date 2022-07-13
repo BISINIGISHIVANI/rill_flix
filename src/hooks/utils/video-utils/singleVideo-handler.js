@@ -4,7 +4,6 @@ export const getSingleVideoData=async (setVideo,videoId)=>{
          const res=await getSingleVideoService(videoId)
          if(res.status===200){
              setVideo(res.data.video)
-             console.log(res.data.video)
             }
      } catch (error) {
          console.error(error)
