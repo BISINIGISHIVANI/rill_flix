@@ -53,11 +53,6 @@ a {
   padding: 0.5rem 0.7rem;
   border-radius: 0.3rem;
 }
-.primary-btn:hover{
-  background-color: var(--mainWhite);
-  border:2px solid var(--primaryColor);
-  color:var(--primaryColor)
-}
 
 .cursor-pointer,
 .list-none li {
