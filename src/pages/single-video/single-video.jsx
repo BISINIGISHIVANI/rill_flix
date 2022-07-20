@@ -16,9 +16,10 @@ import { useVideos } from "../../hooks/context/video-context";
 import { useHistory } from "../../hooks/context/history-context";
 import { addToHistory,deleteHistory } from "../../services/history.services";
 import { Navbar,VideoCard} from "../../componentes";
+import { usePlaylistModal } from "../../hooks/context/playlistModal-context";
 export const SingleVideoPage = () => {
   const {videoId} = useParams();
-  const [video, setVideo] = useState({});
+  const [singleVideo, setSingleVideo] = useState({});
   const [isTextOpen, setIsTextOpen] = useState(false);
    const {
      authState: {token},
@@ -33,17 +34,26 @@ export const SingleVideoPage = () => {
       watchlaterDispatch,
     } = useWatchlater();
     const {historyState:{history},historyDispatch}=useHistory()
+    const {modalDispatch}=usePlaylistModal()
+    const playlistHandler=()=>{
+        const video = videos.find((item) => item._id ===singleVideo._id);
+        modalDispatch({type: "MODAL_OPEN", payload:video});
+   }
    const checkLikeHandler = () => {
-     return likes.find((item) => item._id ===video._id);
+     return likes.find((item) => item._id ===singleVideo._id);
    };
     const WatchlaterHandler = () => {
-      addToWatchlaterVideo(video, token, watchlaterDispatch);
+      addToWatchlaterVideo(singleVideo, token, watchlaterDispatch);
     };
     const checkWatchlater = () => {
-      return watchlater.find((item) => item._id === video._id);
+      return watchlater.find((item) => item._id === singleVideo._id);
     };
-    const simialrVideo=videos.filter((item)=>item.categoryName===video.categoryName)
-    const getSimilarCategory=simialrVideo.filter((item)=>item.title!==video.title)
+    const simialrVideo = videos.filter(
+      (item) => item.categoryName === singleVideo.categoryName
+    );
+    const getSimilarCategory = simialrVideo.filter(
+      (item) => item.title !== singleVideo.title
+    );
   useEffect(() => {
     (async () => {
       try {
@@ -51,7 +61,7 @@ export const SingleVideoPage = () => {
         const {
           data: {video},
         } = response;
-        setVideo(video);
+        setSingleVideo(video);
         const checkHistoryArr=history.find((item)=>item._id===videoId)
         if(checkHistoryArr){
             deleteHistory(checkHistoryArr._id,token,historyDispatch)
@@ -74,51 +84,64 @@ export const SingleVideoPage = () => {
             playing={true}
             volume={0.5}
             width="100%"
-            url={`https://www.youtube.com/embed/${video.videoLink}?autoplay=0`}
+            url={`https://www.youtube.com/embed/${singleVideo.videoLink}?autoplay=0`}
           ></ReactPlayer>
           <div className="flex-row flex-space-between flex-wrap flex-center">
             <div className="flex-row gap">
               <img className="img-avtar" src={avatarIcn} alt="profile" />
               <div className="">
-                <h3>{video.title}</h3>
-                <span>{video.views} Views...</span>
-                <span>Published {video.publishedYear}</span>
+                <h3>{singleVideo.title}</h3>
+                <span>{singleVideo.views} Views...</span>
+                <span>Published {singleVideo.publishedYear}</span>
               </div>
             </div>
             <div className="flex-row gap-md video-icn">
               <label className="hover-white cursor-pointer flex-col">
-                {likes.find((item) => item._id === video._id) ? (
+                {likes.find((item) => item._id === singleVideo._id) ? (
                   <i
-                    onClick={() =>{ deleteLiked(videoId, token, likeDispatch);
-                      toast.info(`${video.title} deleted successfully`)}}
+                    onClick={() => {
+                      deleteLiked(videoId, token, likeDispatch);
+                      toast.info(`${singleVideo.title} deleted successfully`);
+                    }}
                     className="fa-solid fa-thumbs-up like fa-2x"
                   ></i>
                 ) : (
                   <i
-                    onClick={() =>{ addToLike(video, token, likeDispatch);toast.success(`${video.title} added to likes`)}}
+                    onClick={() => {
+                      addToLike(singleVideo, token, likeDispatch);
+                      toast.success(`${singleVideo.title} added to likes`);
+                    }}
                     className="fa-regular fa-thumbs-up fa-2x"
                   ></i>
                 )}
-                {checkLikeHandler(video._id) ? "Liked" : "Like"}
+                {checkLikeHandler(singleVideo._id) ? "Liked" : "Like"}
               </label>
-              <label className="flex-col">
-                <i className="fa-solid fa-folder-plus fa-2x"></i>
-                Save
+
+              <label
+                className="flex-col cursor-pointer"
+                onClick={()=>playlistHandler()}
+              >
+              <i className="fa-solid fa-folder-plus fa-2x"></i>
+                    Save
               </label>
               <label className="cursor-pointer flex-col">
                 {checkWatchlater() ? (
                   <i
-                    onClick={() =>
-                     { deleteWatchlaterVideo(video._id, token, watchlaterDispatch);
-                    toast.info(`${video.title} deleted successfully`)
-                    }
-                    }
+                    onClick={() => {
+                      deleteWatchlaterVideo(
+                        singleVideo._id,
+                        token,
+                        watchlaterDispatch
+                      );
+                      toast.info(`${singleVideo.title} deleted successfully`);
+                    }}
                     className="fa-solid fa-bookmark fa-2x playlist"
                   ></i>
                 ) : (
                   <i
-                    onClick={() =>{ WatchlaterHandler(video._id);
-                    toast.success(`${video.title} added watchlater`)
+                    onClick={() => {
+                      WatchlaterHandler(singleVideo._id);
+                      toast.success(`${singleVideo.title} added watchlater`);
                     }}
                     className="fa-regular fa-bookmark fa-2x playlist"
                   ></i>
@@ -128,25 +151,25 @@ export const SingleVideoPage = () => {
             </div>
           </div>
           <div className="single-video-container padding-md">
-            <h2>{video.title}</h2>
+            <h2>{singleVideo.title}</h2>
             <span
               className="cursor-pointer"
               onClick={() => setIsTextOpen(!isTextOpen)}
             >
-              info:{video.subtitle} {isTextOpen ? "" : "...more"}{" "}
+              info:{singleVideo.subtitle} {isTextOpen ? "" : "...more"}{" "}
             </span>
-            <p>{isTextOpen ? `${video.description}` : ""}</p>
+            <p>{isTextOpen ? `${singleVideo.description}` : ""}</p>
           </div>
         </div>
         <div>
-          <div className="sample-video-note flex-col flex-space-between">
+          {/* <div className="sample-video-note flex-col flex-space-between">
             <div></div>
             <input
               className="video-note-input"
               type="text"
               placeholder="write notes"
             />
-          </div>
+          </div> */}
           <div className="simiar-card-mg">
             <h2 className="padding-md">watch simialr videos</h2>
             {getSimilarCategory.map((video) => (
