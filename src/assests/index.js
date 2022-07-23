@@ -1,2 +1,3 @@
 import bannerOne from "./PTFeature_MoviePosters.jpg"
-export {bannerOne}
+import errorImg from "./errorImg.jpg";
+export {bannerOne,errorImg}

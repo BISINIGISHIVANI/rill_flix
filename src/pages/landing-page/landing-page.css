@@ -1,9 +1,24 @@
 .landing-content {
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.3rem;
+    background:var(--mainBlack);
 }
-
 .margin-md {
     margin: 1rem 0;
+}
+.font-md{
+    font-weight:bolder;
+    font-size: 1.5rem;
+}
+.font-cursive{
+    font-family: "waterBrush",cursive;
+}
+.btn:hover{
+    background: transparent;
+    border:2px solid var(--primaryColor);
+    color:var(--primaryColor)
+}
+.padding-sm{
+    padding: 0.5rem;
 }
 
 .margin-left {
@@ -12,4 +27,67 @@
 
 .margin-right {
     margin-right: 1rem;
+}
+.blur{
+    opacity: 0.5;
+}
+.blur-lg{
+    backdrop-filter: blur(20px);
+}
+.banner-vid{
+    width:84rem;
+    height: 30rem;
+}
+.grid{
+    display: grid;
+}
+.card-grid{
+    grid-column: 1/2;
+    grid-row:1/2;
+}
+.card-shortnote {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.color-white{
+    color: var(--mainWhite);
+}
+.card-bg{
+    background: var(--mainWhite);
+}
+.categories-card{
+    width:18rem;
+    height: 100%;
+}
+.categories-shortnote{
+    width: fit-content;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.categories-shortnote button{
+    margin-left:3rem;
+    width:100%;
+}
+.bd-sm{
+    border: 2px solid var(--mainBlack);
+}
+.bd-radius-sm{
+    border-radius: 1rem;
+}
+.box-shadow:hover{
+    box-shadow: 5px rgb(104, 95, 95) ;
+}
+@media screen and (max-width:500px){
+    .card-size{
+        width:18rem;
+    }
+    .banner-vid{
+        width: 22rem;
+    }
+.hide{
+    display: none;
+}
 }
